@@ -6,14 +6,13 @@
 
 ### Problem Domain  
 
-Making a digital storefront as a front to learn about redux stores. Display products by category once selected by user. 
+Making a digital storefront as a front to learn about redux stores. Display products by category once selected by user.
 
 ### Links and Resources
 
 - [ci/cd](https://github.com/tyler-bennett52/storefront/actions) (GitHub Actions)
 - [Sandbox (main)](https://kfit7r-3000.csb.app/)
 - [Sandbox (redux/class-36)](https://ox6hgc-3000.csb.app/)
-
 
 ### Setup
 
@@ -31,7 +30,7 @@ Day 1 - Can click any of the 3 categories to display mock products (featuring pl
 
 npm test to run tests
 
-Day 1 - Testing of Product and Category interactivity.
+Day 1 - Testing of Product and Category interactivity, specifically whether category select works and if correct products are shown.
 
 #### UML
 
@@ -40,4 +39,4 @@ Day 1 UML
 
 #### Attribution
 
-Relied on class demo for structure of Redux features, especially reducer.js. ChatGPT showed me how to test Redux components. Placehold.co for placeholder images.
+Relied on class demo for structure of Redux features, especially reducer.js. ChatGPT showed me how to test Redux components using the renderWithRedux function. Placehold.co for placeholder images.

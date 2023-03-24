@@ -3,8 +3,8 @@ import { render, screen } from '@testing-library/react';
 import '@testing-library/jest-dom';
 import { legacy_createStore as createStore } from 'redux';
 import { Provider } from 'react-redux';
-import rootReducer from '../../store/reducer'; // Update this import path to match your project structure
-import Products from './index'; // Update this import path to match your project structure
+import rootReducer from '../../store/reducer';
+import Products from './index';
 
 const renderWithRedux = (
   component,
