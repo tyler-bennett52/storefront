@@ -1,5 +1,5 @@
 import { connect } from 'react-redux';
-import { changeCategory, clear } from '../../store/reducer';
+import { changeCategory, clear } from '../../store/active-category';
 import { ButtonGroup, Button } from '@mui/material';
 
 const Categories = (props) => {
