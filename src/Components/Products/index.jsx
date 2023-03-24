@@ -20,10 +20,10 @@ const Products = ({ products, selectedCategory }) => {
 };
 
 
-const mapStateToProps = ({ products }) => {
+const mapStateToProps = ({ activeCategory }) => {
   return {
-    products: products.products,
-    selectedCategory: products.selectedCategory
+    products: activeCategory.products,
+    selectedCategory: activeCategory.selectedCategory
   }
 };
 

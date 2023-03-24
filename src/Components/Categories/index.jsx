@@ -17,9 +17,9 @@ const Categories = (props) => {
   )
 };
 
-const mapStateToProps = ({ products }) => {
+const mapStateToProps = ({ activeCategory }) => {
   return {
-    categories: products.categories,
+    categories: activeCategory.categories,
   }
 };
 
