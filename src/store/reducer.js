@@ -13,7 +13,7 @@ const initState = {
     { name: 'Eggs', category: 'food', price: 1.99, inStock: 12 },
     { name: 'Bread', category: 'food', price: 2.39, inStock: 90 },
   ],
-  activeCategory: '',
+  selectedCategory: '',
 };
 
 const mainReducer = (state = initState, action) => {
@@ -23,7 +23,7 @@ const mainReducer = (state = initState, action) => {
     case 'change-category':
       return {
         ...state,
-        activeCategory: payload,
+        selectedCategory: payload,
         products: initState.products.filter(product => product.category === payload),
       }
     case 'clear':

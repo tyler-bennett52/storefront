@@ -1,16 +1,17 @@
 import { connect } from 'react-redux';
-import { changeCategory } from '../../store/reducer';
+import { changeCategory, clear } from '../../store/reducer';
 import { ButtonGroup, Button } from '@mui/material';
 
 const Categories = (props) => {
-  const { categories, changeCategory } = props;
+  const { changeCategory, clear, categories } = props;
 
   return (
     <>
-      <ButtonGroup variant="text" aria-label="text button group">
+      <ButtonGroup color='secondary' variant='contained' aria-label="text button group">
         {categories.map((category, index) => (
           <Button key={`categories-${index}`} onClick={() => changeCategory(category.name)}>{category.displayName}</Button>
         ))}
+        <Button onClick={clear}>Reset</Button>
       </ButtonGroup>
     </>
   )
@@ -22,8 +23,6 @@ const mapStateToProps = ({ products }) => {
   }
 };
 
-const mapDispatchToProps = {
-  changeCategory,
-};
+const mapDispatchToProps = { changeCategory, clear };
 
 export default connect(mapStateToProps, mapDispatchToProps)(Categories);

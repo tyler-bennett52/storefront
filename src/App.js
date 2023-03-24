@@ -5,7 +5,7 @@ import Categories from './Components/Categories';
 import Products from './Components/Products';
 import Footer from './Components/Footer';
 
-function App(props) {
+function App() {
   return (
     <div className="App">
       <NavBar />

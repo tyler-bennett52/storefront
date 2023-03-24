@@ -1,4 +1,4 @@
-const activeCategory = '';
+const selectedCategory = '';
 
 
-export default activeCategory;
+export default selectedCategory;
