@@ -16,15 +16,14 @@ const initState = {
   selectedCategory: '',
 };
 
-const mainReducer = (state = initState, action) => {
-  const { type, payload } = action;
+const categoryReducer = (state = initState, action) => {
 
-  switch (type) {
+  switch (action.type) {
     case 'change-category':
       return {
         ...state,
-        selectedCategory: payload,
-        products: initState.products.filter(product => product.category === payload),
+        selectedCategory: action.payload,
+        products: initState.products.filter(product => product.category === action.payload),
       }
     case 'clear':
       return initState;
@@ -55,4 +54,4 @@ export const setInitialState = (state) => {
 };
 
 
-export default mainReducer;
+export default categoryReducer;
