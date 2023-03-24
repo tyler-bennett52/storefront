@@ -47,4 +47,12 @@ export const clear = () => {
   }
 }
 
+export const setInitialState = (state) => {
+  return {
+    type: 'set-initial-state',
+    payload: state,
+  };
+};
+
+
 export default mainReducer;
