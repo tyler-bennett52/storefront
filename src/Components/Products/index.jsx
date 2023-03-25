@@ -1,9 +1,10 @@
-import { connect, useDispatch } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 import { Card, CardActionArea, CardMedia, Typography } from '@mui/material';
 import { addItem } from '../../store/cart';
 
-const Products = ({ products, selectedCategory }) => {
+const Products = () => {
   const dispatch = useDispatch()
+  const {products, selectedCategory} = useSelector(state => state.activeCategory)
   return (
     <>
       <h1 data-testid="selected-category">{selectedCategory}</h1>
@@ -22,12 +23,12 @@ const Products = ({ products, selectedCategory }) => {
 };
 
 
-const mapStateToProps = ({ activeCategory }) => {
-  return {
-    products: activeCategory.products,
-    selectedCategory: activeCategory.selectedCategory
-  }
-};
+// const mapStateToProps = ({ activeCategory }) => {
+//   return {
+//     products: activeCategory.products,
+//     selectedCategory: activeCategory.selectedCategory
+//   }
+// };
 
-export default connect(mapStateToProps)(Products);
+export default Products;
 
