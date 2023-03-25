@@ -1,5 +1,6 @@
 // actions.js
 import { setCategories } from './categories';
+import { getProducts as setProducts } from './products';
 
 export const getCategories = () => async (dispatch) => {
   try {
@@ -8,6 +9,16 @@ export const getCategories = () => async (dispatch) => {
     dispatch(setCategories(data.results));
   } catch (error) {
     console.error('Error fetching categories:', error);
+  }
+};
+
+export const getProducts = () => async (dispatch) => {
+  try {
+    const response = await fetch('https://api-js401.herokuapp.com/api/v1/products');
+    const data = await response.json();
+    dispatch(setProducts(data.results));
+  } catch (error) {
+    console.error('Error fetching products:', error);
   }
 };
 
@@ -65,18 +76,7 @@ export const setInitialState = (state) => {
 
 // PRODUCT ACTIONS
 
-export const getProducts = () => async (dispatch) => {
-  try {
-    const response = await fetch('https://api-js401.herokuapp.com/api/v1/products');
-    const data = await response.json();
-    dispatch({
-      type: 'get-products',
-      payload: data.results,
-    });
-  } catch (error) {
-    console.error('Error fetching products:', error);
-  }
-};
+
 
 const updateProductStock = async (product) => {
   try {

@@ -1,6 +1,11 @@
 import { useDispatch, useSelector } from 'react-redux';
 import { Card, CardActionArea, CardMedia, Typography } from '@mui/material';
-import { addItem, decrementProduct, getProducts } from '../../store/actions';
+// import { addItem, decrementProduct, getProducts } from '../../store/actions';
+import { addToCart as addItem } from '../../store/cart';
+import { getProducts } from '../../store/actions';
+import { decrementProduct } from '../../store/actions';
+
+
 import { useEffect } from 'react';
 
 const Products = () => {
