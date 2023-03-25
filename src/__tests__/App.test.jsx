@@ -8,7 +8,6 @@ import Categories from '../Components/Categories';
 import SimpleCart from '../Components/SimpleCart';
 
 describe('Products, Categories, and SimpleCart components', () => {
-  beforeEach(() => {
     render(
       <Provider store={store}>
         <div style={{ position: 'relative' }}>
@@ -18,7 +17,6 @@ describe('Products, Categories, and SimpleCart components', () => {
         </div>
       </Provider>
     );
-  });
 
   it('renders categories buttons and interacts with Products and SimpleCart', () => {
     expect(screen.getByText('Electronics')).toBeInTheDocument();

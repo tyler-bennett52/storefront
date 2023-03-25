@@ -1,62 +1,47 @@
 import React from 'react';
-import { render, screen } from '@testing-library/react';
 import '@testing-library/jest-dom';
-import { legacy_createStore as createStore } from 'redux';
-import { Provider } from 'react-redux';
+import { render, fireEvent, screen } from '@testing-library/react';
+import { useSelector, useDispatch } from 'react-redux';
+import Products from './';
 
-import rootReducer from '../../store/active-category';
+jest.mock('react-redux', () => ({
+  useSelector: jest.fn(),
+  useDispatch: jest.fn(),
+}));
 
-import Products from './index';
-
-const renderWithRedux = (
-  component,
-  { initialState, store = createStore(rootReducer, initialState) } = {}
-) => {
-  return {
-    ...render(<Provider store={store}>{component}</Provider>),
-    store
-  };
-};
+const mockDispatch = jest.fn();
 
 describe('Products component', () => {
-  test('renders selected category', () => {
-    const initialState = {
-      products: {
-        products: [],
-        selectedCategory: 'Electronics'
-      }
-    };
-    renderWithRedux(<Products />, { initialState });
+  beforeEach(() => {
+    useSelector.mockImplementation((callback) => callback({
+      activeCategory: {
+        products: [
+          { id: 1, name: 'Product 1' },
+          { id: 2, name: 'Product 2' },
+        ],
+        selectedCategory: 'Electronics',
+      },
+    }));
+    useDispatch.mockReturnValue(mockDispatch);
+  });
+
+  test('renders the selected category', () => {
+    render(<Products />);
     expect(screen.getByTestId('selected-category')).toHaveTextContent('Electronics');
   });
 
-  test('renders products list', () => {
-    const initialState = {
-      products: {
-        products: [
-          { name: 'TV', category: 'electronics', price: 699.00, inStock: 5 },
-          { name: 'Radio', category: 'electronics', price: 99.00, inStock: 15 }
-        ],
-        selectedCategory: 'Electronics'
-      }
-    };
-    renderWithRedux(<Products />, { initialState });
-    expect(screen.getByText('TV')).toBeInTheDocument();
-    expect(screen.getByText('Radio')).toBeInTheDocument();
+  test('renders the products', () => {
+    render(<Products />);
+    expect(screen.getByText('Product 1')).toBeInTheDocument();
+    expect(screen.getByText('Product 2')).toBeInTheDocument();
   });
 
-  test('does not render products when no category is selected', () => {
-    const initialState = {
-      products: {
-        products: [
-          { name: 'TV', category: 'electronics', price: 699.00, inStock: 5 },
-          { name: 'Radio', category: 'electronics', price: 99.00, inStock: 15 }
-        ],
-        selectedCategory: ''
-      }
-    };
-    renderWithRedux(<Products />, { initialState });
-    expect(screen.queryByText('TV')).not.toBeInTheDocument();
-    expect(screen.queryByText('Radio')).not.toBeInTheDocument();
+  test('dispatches addItem when add to cart is clicked', () => {
+    render(<Products />);
+    fireEvent.click(screen.getAllByText('Add to cart')[0]);
+    expect(mockDispatch).toHaveBeenCalledWith({
+      type: 'add-to-cart',
+      payload: { id: 1, name: 'Product 1' },
+    });
   });
 });
