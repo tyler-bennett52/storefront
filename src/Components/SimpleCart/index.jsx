@@ -3,11 +3,17 @@ import { useSelector, useDispatch } from 'react-redux';
 import IconButton from '@mui/material/IconButton';
 import CloseIcon from '@mui/icons-material/Close';
 import { removeItem } from '../../store/cart';
+import { incrementProduct } from '../../store/active-category';
 import { Card, CardContent, Typography } from '@mui/material';
 
 function SimpleCart() {
   const { cart } = useSelector((state) => state.cart);
   const dispatch = useDispatch();
+
+  function removeFromCart(product) {
+    dispatch(removeItem(product));
+    dispatch(incrementProduct(product));
+  }
 
   return (
     <Card
@@ -36,7 +42,7 @@ function SimpleCart() {
             color="error"
             aria-label="remove from cart"
             component="span"
-            onClick={() => dispatch(removeItem(product))}
+            onClick={() => removeFromCart(product)}
           >
             <CloseIcon />
           </IconButton>

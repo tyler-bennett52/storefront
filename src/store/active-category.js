@@ -1,3 +1,5 @@
+let updatedProducts;
+
 const initState = {
   categories: [
     { name: 'electronics', displayName: 'Electronics' },
@@ -16,17 +18,36 @@ const initState = {
   selectedCategory: '',
 };
 
-const categoryReducer = (state = initState, action) => {
+const mainReducer = (state = initState, action) => {
+  const { type, payload } = action;
 
-  switch (action.type) {
+  switch (type) {
     case 'change-category':
       return {
         ...state,
-        selectedCategory: action.payload,
-        products: initState.products.filter(product => product.category === action.payload),
+        selectedCategory: payload,
+        products: initState.products.filter(product => product.category === payload),
       }
     case 'clear':
       return initState;
+    case 'decrement-stock':
+      updatedProducts = state.products.map(product => {
+        if (product.name === action.payload.name) {
+          product.inStock--;
+          return product;
+        }
+        return product;
+      })
+      return {...state, products: updatedProducts }
+    case 'increment-stock':
+      updatedProducts = state.products.map(product => {
+        if (product.name === action.payload.name) {
+          product.inStock++;
+          return product;
+        }
+        return product;
+      })
+      return {...state, products: updatedProducts }
     default:
       return state
   }
@@ -53,5 +74,19 @@ export const setInitialState = (state) => {
   };
 };
 
+export const incrementProduct = (product) => {
+  return {
+    type: 'increment-stock',
+    payload: product,
+  };
+};
 
-export default categoryReducer;
+export const decrementProduct = (product) => {
+  return {
+    type: 'decrement-stock',
+    payload: product,
+  };
+};
+
+
+export default mainReducer;
