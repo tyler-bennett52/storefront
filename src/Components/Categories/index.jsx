@@ -1,5 +1,5 @@
 import { useDispatch, useSelector } from 'react-redux';
-import { clear, changeCategory, getCategories } from '../../store/actions';
+import { changeCategory, getCategories } from '../../store/actions';
 import { ButtonGroup, Button } from '@mui/material';
 import { useEffect } from 'react';
 
