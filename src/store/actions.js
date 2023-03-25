@@ -1,3 +1,17 @@
+// actions.js
+import { setCategories } from './categories';
+
+export const getCategories = () => async (dispatch) => {
+  try {
+    const response = await fetch('https://api-js401.herokuapp.com/api/v1/categories');
+    const data = await response.json();
+    dispatch(setCategories(data.results));
+  } catch (error) {
+    console.error('Error fetching categories:', error);
+  }
+};
+
+
 // CART ACTIONS
 export function removeItem(product) {
   return {
@@ -21,18 +35,18 @@ export const changeCategory = (category) => {
   }
 };
 
-export const getCategories = () => async (dispatch) => {
-  try {
-    const response = await fetch('https://api-js401.herokuapp.com/api/v1/categories');
-    const data = await response.json();
-    dispatch({
-      type: 'get-categories',
-      payload: data.results,
-    });
-  } catch (error) {
-    console.error('Error fetching categories:', error);
-  }
-}
+// export const getCategories = () => async (dispatch) => {
+//   try {
+//     const response = await fetch('https://api-js401.herokuapp.com/api/v1/categories');
+//     const data = await response.json();
+//     dispatch({
+//       type: 'get-categories',
+//       payload: data.results,
+//     });
+//   } catch (error) {
+//     console.error('Error fetching categories:', error);
+//   }
+// }
 
 export const clear = () => {
   return {
