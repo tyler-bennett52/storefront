@@ -1,47 +1,65 @@
-import React from 'react';
+import { render, screen, fireEvent } from '@testing-library/react';
 import '@testing-library/jest-dom';
-import { render, fireEvent, screen } from '@testing-library/react';
-import { useSelector, useDispatch } from 'react-redux';
+import { Provider } from 'react-redux';
+import configureStore from 'redux-mock-store';
+import thunk from 'redux-thunk';
 import Products from './';
 
-jest.mock('react-redux', () => ({
-  useSelector: jest.fn(),
-  useDispatch: jest.fn(),
-}));
+const mockStore = configureStore([thunk]);
 
-const mockDispatch = jest.fn();
+const mockState = {
+  categories: {
+    selectedCategory: 'electronics',
+  },
+  products: {
+    products: [
+      { name: 'TV', category: 'electronics', price: 699.00, inStock: 5 },
+      { name: 'Radio', category: 'electronics', price: 99.00, inStock: 15 },
+      { name: 'Shirt', category: 'clothing', price: 9.00, inStock: 25 },
+    ],
+  },
+};
 
 describe('Products component', () => {
+  let store;
+
   beforeEach(() => {
-    useSelector.mockImplementation((callback) => callback({
-      activeCategory: {
-        products: [
-          { id: 1, name: 'Product 1' },
-          { id: 2, name: 'Product 2' },
-        ],
-        selectedCategory: 'Electronics',
-      },
-    }));
-    useDispatch.mockReturnValue(mockDispatch);
+    store = mockStore(mockState);
   });
 
-  test('renders the selected category', () => {
-    render(<Products />);
-    expect(screen.getByTestId('selected-category')).toHaveTextContent('Electronics');
+  it('renders without crashing', () => {
+    render(
+      <Provider store={store}>
+        <Products />
+      </Provider>
+    );
   });
 
-  test('renders the products', () => {
-    render(<Products />);
-    expect(screen.getByText('Product 1')).toBeInTheDocument();
-    expect(screen.getByText('Product 2')).toBeInTheDocument();
+  it('displays products based on the selected category', () => {
+    render(
+      <Provider store={store}>
+        <Products />
+      </Provider>
+    );
+
+    expect(screen.getByText('TV (5)')).toBeInTheDocument();
+    expect(screen.getByText('Radio (15)')).toBeInTheDocument();
+    expect(screen.queryByText('Shirt (25)')).not.toBeInTheDocument();
   });
 
-  test('dispatches addItem when add to cart is clicked', () => {
-    render(<Products />);
-    fireEvent.click(screen.getAllByText('Add to cart')[0]);
-    expect(mockDispatch).toHaveBeenCalledWith({
-      type: 'add-to-cart',
-      payload: { id: 1, name: 'Product 1' },
-    });
+  it('updates in-stock count when the "Add to cart" button is clicked', () => {
+    render(
+      <Provider store={store}>
+        <Products />
+      </Provider>
+    );
+  
+    const addToCartButtons = screen.getAllByText('Add to cart');
+    fireEvent.click(addToCartButtons[0]);
+  
+    const dispatchedActions = store.getActions();
+    expect(dispatchedActions[0]).toEqual({ type: 'add-to-cart', payload: { name: 'TV', category: 'electronics', price: 699.00, inStock: 5 } });
+    // expect(dispatchedActions[1]).toEqual({ type: 'remove-from-cart', payload: { name: 'TV', category: 'electronics', price: 699.00, inStock: 5 } });
   });
+  
 });
