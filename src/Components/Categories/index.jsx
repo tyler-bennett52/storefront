@@ -1,28 +1,22 @@
-import { connect } from 'react-redux';
-import { changeCategory, clear } from '../../store/active-category';
+import { useDispatch, useSelector } from 'react-redux';
+import { clear, changeCategory } from '../../store/active-category';
 import { ButtonGroup, Button } from '@mui/material';
 
 const Categories = (props) => {
-  const { changeCategory, clear, categories } = props;
+  const { categories } = useSelector(state => state.activeCategory)
+  const dispatch = useDispatch()
 
   return (
     <>
       <ButtonGroup color='secondary' variant='contained' aria-label="text button group" style={{display:'inline'}}>
         {categories.map((category, index) => (
-          <Button key={`categories-${index}`} onClick={() => changeCategory(category.name)}>{category.displayName}</Button>
+          <Button key={`categories-${index}`} onClick={() => dispatch(changeCategory(category.name))}>{category.displayName}</Button>
         ))}
-        <Button onClick={clear}>Reset</Button>
+        <Button onClick={() => dispatch(clear)}>Reset</Button>
       </ButtonGroup>
     </>
   )
 };
 
-const mapStateToProps = ({ activeCategory }) => {
-  return {
-    categories: activeCategory.categories,
-  }
-};
 
-const mapDispatchToProps = { changeCategory, clear };
-
-export default connect(mapStateToProps, mapDispatchToProps)(Categories);
+export default Categories;
