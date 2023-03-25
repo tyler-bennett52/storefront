@@ -1,34 +1,39 @@
-
 export function addItem(product) {
   return {
-    type: 'add-to-cart', 
+    type: 'add-to-cart',
     payload: product
   }
 }
 
 export function removeItem(product) {
   return {
-    type: 'remove-from-cart', 
+    type: 'remove-from-cart',
     payload: product
   }
 }
 
-const initState = {cart: []};
+const initState = { cart: [] };
 
 
 function cartReducer(state = initState, action) {
-  switch(action.type) {
+  switch (action.type) {
     case 'add-to-cart':
-      return {...state, cart: [...state.cart, action.payload]};
+      return { ...state, cart: [...state.cart, action.payload] };
     case 'remove-from-cart':
-      return {...state, cart: state.cart.filter(product => product.name !== action.payload.name)}
-      default:
-        return state;
-      }
+      let newCart = removeOne(state.cart, action.payload)
+      return { ...state, cart: newCart }
+    default:
+      return state;
+  }
 }
 
-export default cartReducer; 
+export default cartReducer;
 
-// function removeOne(product) {
-
-// }
+function removeOne(array, product) {
+  for (let i = 0; i < array.length; i++) {
+    if (array[i].name === product.name) {
+      array.splice(i, 1);
+      return array;
+    }
+  } return array;
+} 
