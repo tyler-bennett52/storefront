@@ -40,7 +40,7 @@ Day 1 - Testing of Product and Category interactivity, specifically whether cate
 
 Day 2 - Integrate SimpleCart into integration test. Remove empty test files. Rewrite of Product.test.js.
 
-Day 3 - API hookup has broken all of my tests and I am too tired to care. Planning to try again tomorrow.
+Day 3 - Moved away from integration test and back to unit tests. Do not know why but couldn't get API call or MSW to work.
 
 #### UML
 
@@ -54,4 +54,4 @@ Day 2 UML
 
 Relied on class demo for structure of Redux features, especially reducer.js. ChatGPT showed me how to test Redux components using the renderWithRedux function. Placehold.co for placeholder images.
 
-Used ChatGPT to assist in rewriting Product unit tests to be more 'unit testy' with mock functions. Old tests live in the integration test app.test.js.
+Used ChatGPT to assist in rewriting Product/Category/SimpleCart tests to be more 'unit testy' with mock functions.
