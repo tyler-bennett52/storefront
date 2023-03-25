@@ -64,18 +64,28 @@ export const getProducts = () => async (dispatch) => {
   }
 };
 
+const updateProductStock = async (product) => {
+  try {
+    await axios.put(`https://api-js401.herokuapp.com/api/v1/products/${product._id}`, product);
+  } catch (error) {
+    console.error('Error updating product stock:', error);
+  }
+};
 
-export const incrementProduct = (product) => {
-  return {
+export const incrementProduct = (product) => async (dispatch) => {
+  const updatedProduct = { ...product, inStock: product.inStock + 1 };
+  await updateProductStock(updatedProduct);
+  dispatch({
     type: 'increment-stock',
-    payload: product,
-  };
+    payload: updatedProduct,
+  });
 };
 
-export const decrementProduct = (product) => {
-  return {
+export const decrementProduct = (product) => async (dispatch) => {
+  const updatedProduct = { ...product, inStock: product.inStock - 1 };
+  await updateProductStock(updatedProduct);
+  dispatch({
     type: 'decrement-stock',
-    payload: product,
-  };
+    payload: updatedProduct,
+  });
 };
-
