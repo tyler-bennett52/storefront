@@ -1,6 +1,6 @@
 const initialState = {
   categories: [],
-  activeCategory: '',
+  selectedCategory: '',
 };
 
 const categoryReducer = (state = initialState, action) => {
@@ -9,7 +9,7 @@ const categoryReducer = (state = initialState, action) => {
     case 'change-category':
       return {
         ...state,
-        activeCategory: action.payload,
+        selectedCategory: action.payload,
       }
     case 'get-categories':
       return {

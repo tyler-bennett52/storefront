@@ -51,6 +51,20 @@ export const setInitialState = (state) => {
 
 
 // PRODUCT ACTIONS
+
+export const getProducts = () => async (dispatch) => {
+  try {
+    const response = await axios.get('https://api-js401.herokuapp.com/api/v1/products');
+    dispatch({
+      type: 'get-products',
+      payload: response.data.results,
+    });
+  } catch (error) {
+    console.error('Error fetching products:', error);
+  }
+};
+
+
 export const incrementProduct = (product) => {
   return {
     type: 'increment-stock',

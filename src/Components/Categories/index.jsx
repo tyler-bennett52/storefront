@@ -4,7 +4,6 @@ import { ButtonGroup, Button } from '@mui/material';
 import { useEffect } from 'react';
 
 const Categories = (props) => {
-  // const { categories } = useSelector(state => state.activeCategory);
   const { categories } = useSelector(state => state.categories);
   const dispatch = useDispatch();
 
@@ -19,7 +18,6 @@ const Categories = (props) => {
         {categories.map((category, index) => (
           <Button key={`categories-${index}`} onClick={() => dispatch(changeCategory(category.name))}>{category.name}</Button>
         ))}
-        <Button onClick={() => dispatch(clear())}>Reset</Button>
       </ButtonGroup>
     </>
   )

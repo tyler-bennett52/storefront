@@ -1,16 +1,39 @@
-const initialState = [];
+const initialState = {
+  products: [],
+};
 
 const productsReducer = (state = initialState, action) => {
-  switch(action.type){
+  let updatedProducts;
+
+  switch (action.type) {
     case 'get-products':
-      return action.payload;
+      return { ...state, products: action.payload };
     case 'update-products':
-      return state.map(product => product.name !== action.payload.name ? product : action.payload);
+      updatedProducts = state.products.map((product) =>
+        product.name !== action.payload.name ? product : action.payload
+      );
+      return { ...state, products: updatedProducts };
+    case 'decrement-stock':
+      updatedProducts = state.products.map((product) => {
+        if (product.name === action.payload.name) {
+          product.inStock--;
+          return product;
+        }
+        return product;
+      });
+      return { ...state, products: updatedProducts };
+    case 'increment-stock':
+      updatedProducts = state.products.map((product) => {
+        if (product.name === action.payload.name) {
+          product.inStock++;
+          return product;
+        }
+        return product;
+      });
+      return { ...state, products: updatedProducts };
     default:
-      return state
+      return state;
   }
 };
 
-
 export default productsReducer;
-
