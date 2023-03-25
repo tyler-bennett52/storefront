@@ -1,3 +1,5 @@
+import axios from 'axios';
+
 // CART ACTIONS
 export function removeItem(product) {
   return {
@@ -13,12 +15,25 @@ export function addItem(product) {
   }
 }
 
+// CATEGORY ACTIONS
 export const changeCategory = (category) => {
   return {
     type: 'change-category',
     payload: category,
   }
 };
+
+export const getCategories = () => async (dispatch) => {
+  try {
+    const response = await axios.get('https://api-js401.herokuapp.com/api/v1/categories');
+    dispatch({
+      type: 'get-categories',
+      payload: response.data.results,
+    });
+  } catch (error) {
+    console.error('Error fetching categories:', error);
+  }
+}
 
 export const clear = () => {
   return {
@@ -34,6 +49,8 @@ export const setInitialState = (state) => {
   };
 };
 
+
+// PRODUCT ACTIONS
 export const incrementProduct = (product) => {
   return {
     type: 'increment-stock',
