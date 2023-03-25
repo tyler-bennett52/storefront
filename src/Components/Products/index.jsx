@@ -1,7 +1,6 @@
 import { useDispatch, useSelector } from 'react-redux';
 import { Card, CardActionArea, CardMedia, Typography } from '@mui/material';
-import { addItem } from '../../store/cart';
-import { decrementProduct } from '../../store/active-category';
+import { addItem, decrementProduct } from '../../store/actions';
 
 const Products = () => {
   const dispatch = useDispatch()
