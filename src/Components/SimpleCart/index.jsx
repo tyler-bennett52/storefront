@@ -1,27 +1,48 @@
-// SimpleCart.js
 import React from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 import IconButton from '@mui/material/IconButton';
 import CloseIcon from '@mui/icons-material/Close';
 import { removeItem } from '../../store/cart';
+import { Card, CardContent, Typography } from '@mui/material';
 
 function SimpleCart() {
   const { cart } = useSelector((state) => state.cart);
-  const dispatch = useDispatch()
-
+  const dispatch = useDispatch();
 
   return (
-    <ul style={{listStyleType: 'none', width: '10%', border: '1px black solid', position: 'absolute', right: '0'}}>
+    <Card
+      sx={{
+        width: '10%',
+        border: '1px solid gray',
+        position: 'absolute',
+        right: '0',
+        backgroundColor: 'gray',
+      }}
+    >
       {cart.map((product, index) => (
-        <li key={`cartItem-${index}`}>
-          
-          {product.name}
-          <IconButton color="error" aria-label="remove from cart" component="span" onClick={() => dispatch(removeItem(product))}>
+        <CardContent
+          key={`cartItem-${index}`}
+          sx={{
+            display: 'flex',
+            alignItems: 'center',
+            justifyContent: 'space-between',
+            borderTop: index !== 0 ? '1px solid white' : 'none',
+            borderBottom: index !== cart.length - 1 ? '1px solid white' : 'none',
+            padding: 1,
+          }}
+        >
+          <Typography variant="body1" color="white">{product.name}</Typography>
+          <IconButton
+            color="error"
+            aria-label="remove from cart"
+            component="span"
+            onClick={() => dispatch(removeItem(product))}
+          >
             <CloseIcon />
           </IconButton>
-        </li>
+        </CardContent>
       ))}
-    </ul>
+    </Card>
   );
 }
 
