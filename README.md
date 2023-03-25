@@ -27,17 +27,26 @@ Making a digital storefront as a front to learn about redux stores. Display prod
 
 Day 1 - Can click any of the 3 categories to display mock products (featuring placeholder images from https://placehold.co/)
 
+Day 2 - Added functionality to add to cart button. Cart displays in upper right corner as items are added, X icon is functional for removing one item at a time.
+
 #### Tests
 
 npm test to run tests
 
 Day 1 - Testing of Product and Category interactivity, specifically whether category select works and if correct products are shown.
 
+Day 2 - Integrate SimpleCart into integration test. Remove empty test files. Rewrite of Product.test.js.
+
 #### UML
 
 Day 1 UML
 ![Lab-36 UML](./public/Lab-36-UML.png)
 
+Day 2 UML
+![Lab-37 UML](./public/Lab-37-UML.png)
+
 #### Attribution
 
 Relied on class demo for structure of Redux features, especially reducer.js. ChatGPT showed me how to test Redux components using the renderWithRedux function. Placehold.co for placeholder images.
+
+Used ChatGPT to assist in rewriting Product unit tests to be more 'unit testy' with mock functions. Old tests live in the integration test app.test.js.
