@@ -23,12 +23,6 @@ const Products = () => {
 };
 
 
-// const mapStateToProps = ({ activeCategory }) => {
-//   return {
-//     products: activeCategory.products,
-//     selectedCategory: activeCategory.selectedCategory
-//   }
-// };
 
 export default Products;
 

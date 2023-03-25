@@ -12,7 +12,7 @@ const Categories = (props) => {
         {categories.map((category, index) => (
           <Button key={`categories-${index}`} onClick={() => dispatch(changeCategory(category.name))}>{category.displayName}</Button>
         ))}
-        <Button onClick={() => dispatch(clear)}>Reset</Button>
+        <Button onClick={() => dispatch(clear())}>Reset</Button>
       </ButtonGroup>
     </>
   )
