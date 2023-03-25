@@ -24,7 +24,7 @@ describe('Products, Categories, and SimpleCart components', () => {
     // Test if clicking a category button changes the selected category
     fireEvent.click(screen.getByText('Electronics'));
     expect(screen.getByTestId('selected-category')).toHaveTextContent('electronics');
-    expect(screen.getByText('TV')).toBeInTheDocument();
+    expect(screen.getByText('TV (5)')).toBeInTheDocument();
 
     // Test if clicking a category button filters the products
     fireEvent.click(screen.getByText('Clothing'));
@@ -33,7 +33,7 @@ describe('Products, Categories, and SimpleCart components', () => {
     // Test if clicking the "Add to cart" button adds a product to the cart
     const addToCartButtons = screen.getAllByText('Add to cart');
     fireEvent.click(addToCartButtons[0]);
-    expect(store.getState().cart).toEqual({"cart": [{"category": "clothing", "inStock": 25, "name": "Shirt", "price": 9}]});
+    expect(store.getState().cart).toEqual({"cart": [{"category": "clothing", "inStock": 24, "name": "Shirt", "price": 9}]});
 
     // Test if clicking the "Remove from cart" button removes a product from the cart
     const removeFromCartButton = screen.getByLabelText('remove from cart');
