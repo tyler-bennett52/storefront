@@ -7,7 +7,7 @@ const reducers = combineReducers({
   activeCategory: categoryReducer,
   cart: cartReducer
 })
-
+  
 const store = () => createStore(reducers);
 
 export default store();

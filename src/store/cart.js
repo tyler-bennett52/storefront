@@ -13,16 +13,22 @@ export function removeItem(product) {
   }
 }
 
+const initState = {cart: []};
 
-function cartReducer(state = [], action) {
+
+function cartReducer(state = initState, action) {
   switch(action.type) {
     case 'add-to-cart':
-      return [...state, action.payload];
+      return {...state, cart: [...state.cart, action.payload]};
     case 'remove-from-cart':
-      return state.filter(purchase => purchase.name !== action.payload.name)
+      return {...state, cart: state.cart.filter(product => product.name !== action.payload.name)}
       default:
         return state;
       }
 }
 
-export default cartReducer;
+export default cartReducer; 
+
+// function removeOne(product) {
+
+// }

@@ -1,7 +1,9 @@
-import { connect } from 'react-redux';
+import { connect, useDispatch } from 'react-redux';
 import { Card, CardActionArea, CardMedia, Typography } from '@mui/material';
+import { addItem } from '../../store/cart';
 
 const Products = ({ products, selectedCategory }) => {
+  const dispatch = useDispatch()
   return (
     <>
       <h1 data-testid="selected-category">{selectedCategory}</h1>
@@ -10,8 +12,8 @@ const Products = ({ products, selectedCategory }) => {
           <Card style={{ width: 'fit-content', display: 'inline-block' }} key={`product-${index}`} variant="outlined">
             <Typography variant='h5' >{product.name}</Typography>
             <CardMedia sx={{ height: 300, width: 300 }} image='https://placehold.co/300x300' />
-            <CardActionArea><Typography variant='h6' color='text.secondary'>Add to cart</Typography></CardActionArea>
-            <CardActionArea><Typography variant='h6' color='text.secondary'>Show Details</Typography></CardActionArea>
+            <CardActionArea onClick={() => dispatch(addItem(product))}><Typography variant='h6' color='text.secondary'>Add to cart</Typography></CardActionArea>
+            <CardActionArea ><Typography variant='h6' color='text.secondary'>Show Details</Typography></CardActionArea>
           </Card>
         ))}
       </div>
