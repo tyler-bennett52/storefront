@@ -43,6 +43,7 @@ const Products = () => {
                 <Typography variant='h5' >{product.name} {product.inStock ? (`(0)`) : null}</Typography>
                 <CardMedia sx={{ height: 300, width: 300 }} image='https://placehold.co/300x300' />
                 <CardActionArea ><Typography variant='h6' color='text.secondary'>Out of Stock</Typography></CardActionArea>
+                <CardActionArea ><Typography variant='h6' color='text.secondary'>Show Details</Typography></CardActionArea>
               </Card>
               )
             }
