@@ -17,7 +17,7 @@ export default function NavBar() {
           <Typography variant="h2" component="div" sx={{ flexGrow: 1 }} style={{ textAlign: 'left' }}>
             <Link to='/'>Our Store</Link>
           </Typography>
-          <Button color="inherit">Cart ({cart.length})</Button>
+          <Button color="inherit"> <Link to="checkout">Cart</Link> ({cart.length})</Button>
         </Toolbar>
       </AppBar>
     </Box>

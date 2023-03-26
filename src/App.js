@@ -4,6 +4,7 @@ import NavBar from './Components/NavBar';
 import Footer from './Components/Footer';
 import StoreFront from './Components/StoreFront';
 import Details from './Components/Details';
+import Checkout from './Components/Checkout';
 
 function App() {
   return (
@@ -13,6 +14,7 @@ function App() {
         <Routes>
           <Route exact path="/" element={<StoreFront />} />
           <Route exact path="/products/:id" element={<Details />} />
+          <Route exact path="/checkout" element={<Checkout />} />
         </Routes>
         <Footer />
       </div>
