@@ -4,6 +4,7 @@ import { useParams } from "react-router";
 import { addToCart as addItem } from '../../store/cart';
 import { decrementStock as decrementProduct } from "../../store/products";
 import { Button } from "@mui/material";
+import SimpleCart from "../SimpleCart";
 
 
 const Details = () => {
@@ -19,13 +20,16 @@ const Details = () => {
   const selectedProduct = products.find(product => product._id === id);
 
   return ( 
+    <>
+      <SimpleCart />
     <div className="Details" style={{display: 'flex', flexDirection: 'column', justifyContent: 'center', alignItems: 'center'}}>
   <Typography variant="h2">{selectedProduct.name}</Typography>
   <Typography variant="h4">Category: {selectedProduct.category}</Typography>
   <Typography variant="h4">Still in Stock: {selectedProduct.inStock}</Typography>
   <Typography variant="h4">Price: {selectedProduct.price}</Typography>
-  <Button sx={{width: '30%'}} color="secondary" variant="contained" onClick={() => addToCart(selectedProduct)}>Add to Cart</Button>
+  <Button sx={{width: '30%'}} color="secondary" disabled={selectedProduct.inStock < 1} variant="contained" onClick={() => addToCart(selectedProduct)}>Add to Cart</Button>
     </div>
+    </>
    );
 }
  
