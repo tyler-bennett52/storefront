@@ -6,6 +6,7 @@ import TextField from '@mui/material/TextField';
 import Typography from '@mui/material/Typography';
 import Button from '@mui/material/Button';
 import Grid from '@mui/material/Grid';
+import SimpleCart from '../SimpleCart';
 
 function Checkout() {
   const { cart } = useSelector((state) => state.cart);
@@ -14,6 +15,7 @@ function Checkout() {
 
   return (
     <Container maxWidth="sm">
+      <SimpleCart />
     <Box sx={{ marginTop: 4 }}>
       <Typography variant="h4" gutterBottom>
         Checkout

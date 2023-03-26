@@ -38,7 +38,7 @@ function SimpleCart() {
             padding: 1,
           }}
         >
-          <Typography variant="body1" color="white">{product.name}</Typography>
+          <Typography variant="body1" color="white">{product.name} - ${product.price}</Typography>
           <IconButton
             color="error"
             aria-label="remove from cart"
