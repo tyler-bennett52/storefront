@@ -3,7 +3,7 @@ import { Card, CardActionArea, CardMedia, Typography } from '@mui/material';
 // import { addItem, decrementProduct, getProducts } from '../../store/actions';
 import { addToCart as addItem } from '../../store/cart';
 import { getProducts } from '../../store/actions';
-import { decrementProduct } from '../../store/actions';
+import { decrementStock as decrementProduct } from '../../store/products';
 
 
 import { useEffect } from 'react';
