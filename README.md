@@ -59,4 +59,4 @@ Day 2 UML
 
 Relied on class demo for structure of Redux features, especially reducer.js. ChatGPT showed me how to test Redux components using the renderWithRedux function. Placehold.co for placeholder images.
 
-Used ChatGPT to assist in writing unit tests.
+Used ChatGPT to assist in writing unit tests and implementing MUI grid for checkout form.
