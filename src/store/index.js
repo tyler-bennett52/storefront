@@ -1,11 +1,13 @@
 import { legacy_createStore as createStore, combineReducers } from 'redux';
-import mainReducer from './active-category';
+import categoryReducer from './active-category';
+import cartReducer from './cart';
 
 
 const reducers = combineReducers({
-  products: mainReducer
+  activeCategory: categoryReducer,
+  cart: cartReducer
 })
-
+  
 const store = () => createStore(reducers);
 
 export default store();

@@ -7,7 +7,7 @@ const Categories = (props) => {
 
   return (
     <>
-      <ButtonGroup color='secondary' variant='contained' aria-label="text button group">
+      <ButtonGroup color='secondary' variant='contained' aria-label="text button group" style={{display:'inline'}}>
         {categories.map((category, index) => (
           <Button key={`categories-${index}`} onClick={() => changeCategory(category.name)}>{category.displayName}</Button>
         ))}
@@ -17,9 +17,9 @@ const Categories = (props) => {
   )
 };
 
-const mapStateToProps = ({ products }) => {
+const mapStateToProps = ({ activeCategory }) => {
   return {
-    categories: products.categories,
+    categories: activeCategory.categories,
   }
 };
 

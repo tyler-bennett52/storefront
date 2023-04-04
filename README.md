@@ -13,6 +13,7 @@ Making a digital storefront as a front to learn about redux stores. Display prod
 - [ci/cd](https://github.com/tyler-bennett52/storefront/actions) (GitHub Actions)
 - [Sandbox (main)](https://kfit7r-3000.csb.app/)
 - [Sandbox (redux/class-36)](https://ox6hgc-3000.csb.app/)
+- [Sandbox (combined-reducers/class-37)](https://y50g6c-3000.csb.app/)
 
 ### Setup
 
