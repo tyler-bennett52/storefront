@@ -3,7 +3,9 @@ import { render, screen } from '@testing-library/react';
 import '@testing-library/jest-dom';
 import { legacy_createStore as createStore } from 'redux';
 import { Provider } from 'react-redux';
-import rootReducer from '../../store/reducer';
+
+import rootReducer from '../../store/active-category';
+
 import Products from './index';
 
 const renderWithRedux = (
