@@ -2,8 +2,7 @@ import React from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 import IconButton from '@mui/material/IconButton';
 import CloseIcon from '@mui/icons-material/Close';
-import { removeItem } from '../../store/cart';
-import { incrementProduct } from '../../store/active-category';
+import { removeItem, incrementProduct } from '../../store/actions';
 import { Card, CardContent, Typography } from '@mui/material';
 
 function SimpleCart() {

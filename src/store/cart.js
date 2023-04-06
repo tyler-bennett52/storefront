@@ -1,19 +1,4 @@
-export function addItem(product) {
-  return {
-    type: 'add-to-cart',
-    payload: product
-  }
-}
-
-export function removeItem(product) {
-  return {
-    type: 'remove-from-cart',
-    payload: product
-  }
-}
-
 const initState = { cart: [] };
-
 
 function cartReducer(state = initState, action) {
   switch (action.type) {

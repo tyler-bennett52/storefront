@@ -14,6 +14,7 @@ Making a digital storefront as a front to learn about redux stores. Display prod
 - [Sandbox (main)](https://kfit7r-3000.csb.app/)
 - [Sandbox (redux/class-36)](https://ox6hgc-3000.csb.app/)
 - [Sandbox (combined-reducers/class-37)](https://y50g6c-3000.csb.app/)
+- [Sandbox (thunk/class-38)](https://4oisv4-3000.csb.app/)
 
 ### Setup
 
@@ -29,6 +30,8 @@ Day 1 - Can click any of the 3 categories to display mock products (featuring pl
 
 Day 2 - Added functionality to add to cart button. Cart displays in upper right corner as items are added, X icon is functional for removing one item at a time.
 
+Day 3 - Hooked up to API for live data.
+
 #### Tests
 
 npm test to run tests
@@ -36,6 +39,8 @@ npm test to run tests
 Day 1 - Testing of Product and Category interactivity, specifically whether category select works and if correct products are shown.
 
 Day 2 - Integrate SimpleCart into integration test. Remove empty test files. Rewrite of Product.test.js.
+
+Day 3 - API hookup has broken all of my tests and I am too tired to care. Planning to try again tomorrow.
 
 #### UML
 

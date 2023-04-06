@@ -53,40 +53,4 @@ const mainReducer = (state = initState, action) => {
   }
 };
 
-export const changeCategory = (category) => {
-  return {
-    type: 'change-category',
-    payload: category,
-  }
-};
-
-export const clear = () => {
-  return {
-    type: 'clear',
-    payload: {},
-  }
-}
-
-export const setInitialState = (state) => {
-  return {
-    type: 'set-initial-state',
-    payload: state,
-  };
-};
-
-export const incrementProduct = (product) => {
-  return {
-    type: 'increment-stock',
-    payload: product,
-  };
-};
-
-export const decrementProduct = (product) => {
-  return {
-    type: 'decrement-stock',
-    payload: product,
-  };
-};
-
-
 export default mainReducer;
