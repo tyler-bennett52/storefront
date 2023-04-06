@@ -41,7 +41,7 @@ const Products = () => {
               </Card>
               )
             }
-          }
+          } else return null;
         })}
       </div>
     </>

@@ -1,5 +1,3 @@
-import axios from 'axios';
-
 // CART ACTIONS
 export function removeItem(product) {
   return {
@@ -25,10 +23,11 @@ export const changeCategory = (category) => {
 
 export const getCategories = () => async (dispatch) => {
   try {
-    const response = await axios.get('https://api-js401.herokuapp.com/api/v1/categories');
+    const response = await fetch('https://api-js401.herokuapp.com/api/v1/categories');
+    const data = await response.json();
     dispatch({
       type: 'get-categories',
-      payload: response.data.results,
+      payload: data.results,
     });
   } catch (error) {
     console.error('Error fetching categories:', error);
@@ -54,10 +53,11 @@ export const setInitialState = (state) => {
 
 export const getProducts = () => async (dispatch) => {
   try {
-    const response = await axios.get('https://api-js401.herokuapp.com/api/v1/products');
+    const response = await fetch('https://api-js401.herokuapp.com/api/v1/products');
+    const data = await response.json();
     dispatch({
       type: 'get-products',
-      payload: response.data.results,
+      payload: data.results,
     });
   } catch (error) {
     console.error('Error fetching products:', error);
@@ -66,7 +66,13 @@ export const getProducts = () => async (dispatch) => {
 
 const updateProductStock = async (product) => {
   try {
-    await axios.put(`https://api-js401.herokuapp.com/api/v1/products/${product._id}`, product);
+    await fetch(`https://api-js401.herokuapp.com/api/v1/products/${product._id}`, {
+      method: 'PUT',
+      headers: {
+        'Content-Type': 'application/json'
+      },
+      body: JSON.stringify(product)
+    });
   } catch (error) {
     console.error('Error updating product stock:', error);
   }
