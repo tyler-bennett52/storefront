@@ -6,7 +6,7 @@ import Checkout from './';
 
 jest.mock('react-redux', () => ({
   useSelector: jest.fn(),
-  useDispatch: () => jest.fn(), // Update this line
+  useDispatch: () => jest.fn(),
 }));
 
 const mockCart = [

@@ -33,6 +33,8 @@ Day 2 - Added functionality to add to cart button. Cart displays in upper right 
 
 Day 3 - Hooked up to API for live data.
 
+Day 4 - Add Checkout and Details pages. Refactor to redux toolkit.
+
 #### Tests
 
 npm test to run tests
@@ -42,6 +44,8 @@ Day 1 - Testing of Product and Category interactivity, specifically whether cate
 Day 2 - Integrate SimpleCart into integration test. Remove empty test files. Rewrite of Product.test.js.
 
 Day 3 - Moved away from integration test and back to unit tests. Do not know why but couldn't get API call or MSW to work.
+
+Day 4 - Expanded unit test to Checkout Page.
 
 #### UML
 
@@ -55,4 +59,4 @@ Day 2 UML
 
 Relied on class demo for structure of Redux features, especially reducer.js. ChatGPT showed me how to test Redux components using the renderWithRedux function. Placehold.co for placeholder images.
 
-Used ChatGPT to assist in rewriting Product/Category/SimpleCart tests to be more 'unit testy' with mock functions.
+Used ChatGPT to assist in writing unit tests and implementing MUI grid for checkout form.
