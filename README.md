@@ -15,6 +15,7 @@ Making a digital storefront as a front to learn about redux stores. Display prod
 - [Sandbox (redux/class-36)](https://ox6hgc-3000.csb.app/)
 - [Sandbox (combined-reducers/class-37)](https://y50g6c-3000.csb.app/)
 - [Sandbox (thunk/class-38)](https://4oisv4-3000.csb.app/)
+- [Sandbox (rtx/class-39)](https://ijqrez-3000.csb.app/)
 
 ### Setup
 

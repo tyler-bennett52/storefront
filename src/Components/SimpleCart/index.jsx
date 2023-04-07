@@ -2,7 +2,9 @@ import React from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 import IconButton from '@mui/material/IconButton';
 import CloseIcon from '@mui/icons-material/Close';
-import { removeItem, incrementProduct } from '../../store/actions';
+// import { removeItem, incrementProduct } from '../../store/actions';
+import { removeFromCart as removeItem } from '../../store/cart';
+import { incrementStock as incrementProduct } from '../../store/products';
 import { Card, CardContent, Typography } from '@mui/material';
 
 function SimpleCart() {
@@ -36,7 +38,7 @@ function SimpleCart() {
             padding: 1,
           }}
         >
-          <Typography variant="body1" color="white">{product.name}</Typography>
+          <Typography variant="body1" color="white">{product.name} - ${product.price}</Typography>
           <IconButton
             color="error"
             aria-label="remove from cart"

@@ -1,5 +1,6 @@
 import * as React from 'react';
 import { useSelector } from 'react-redux';
+import { Link } from 'react-router-dom';
 import AppBar from '@mui/material/AppBar';
 import Box from '@mui/material/Box';
 import Toolbar from '@mui/material/Toolbar';
@@ -14,9 +15,9 @@ export default function NavBar() {
         <Toolbar>
 
           <Typography variant="h2" component="div" sx={{ flexGrow: 1 }} style={{ textAlign: 'left' }}>
-            Our Store
+            <Link to='/'>Our Store</Link>
           </Typography>
-          <Button color="inherit">Cart ({cart.length})</Button>
+          <Button color="inherit"> <Link to="checkout">Cart</Link> ({cart.length})</Button>
         </Toolbar>
       </AppBar>
     </Box>

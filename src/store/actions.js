@@ -1,3 +1,28 @@
+// actions.js
+import { setCategories } from './categories';
+import { getProducts as setProducts } from './products';
+
+export const getCategories = () => async (dispatch) => {
+  try {
+    const response = await fetch('https://api-js401.herokuapp.com/api/v1/categories');
+    const data = await response.json();
+    dispatch(setCategories(data.results));
+  } catch (error) {
+    console.error('Error fetching categories:', error);
+  }
+};
+
+export const getProducts = () => async (dispatch) => {
+  try {
+    const response = await fetch('https://api-js401.herokuapp.com/api/v1/products');
+    const data = await response.json();
+    dispatch(setProducts(data.results));
+  } catch (error) {
+    console.error('Error fetching products:', error);
+  }
+};
+
+
 // CART ACTIONS
 export function removeItem(product) {
   return {
@@ -21,18 +46,18 @@ export const changeCategory = (category) => {
   }
 };
 
-export const getCategories = () => async (dispatch) => {
-  try {
-    const response = await fetch('https://api-js401.herokuapp.com/api/v1/categories');
-    const data = await response.json();
-    dispatch({
-      type: 'get-categories',
-      payload: data.results,
-    });
-  } catch (error) {
-    console.error('Error fetching categories:', error);
-  }
-}
+// export const getCategories = () => async (dispatch) => {
+//   try {
+//     const response = await fetch('https://api-js401.herokuapp.com/api/v1/categories');
+//     const data = await response.json();
+//     dispatch({
+//       type: 'get-categories',
+//       payload: data.results,
+//     });
+//   } catch (error) {
+//     console.error('Error fetching categories:', error);
+//   }
+// }
 
 export const clear = () => {
   return {
@@ -51,18 +76,7 @@ export const setInitialState = (state) => {
 
 // PRODUCT ACTIONS
 
-export const getProducts = () => async (dispatch) => {
-  try {
-    const response = await fetch('https://api-js401.herokuapp.com/api/v1/products');
-    const data = await response.json();
-    dispatch({
-      type: 'get-products',
-      payload: data.results,
-    });
-  } catch (error) {
-    console.error('Error fetching products:', error);
-  }
-};
+
 
 const updateProductStock = async (product) => {
   try {

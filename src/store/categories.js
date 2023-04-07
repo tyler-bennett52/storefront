@@ -1,26 +1,37 @@
+// categoryReducer.js
+import { createSlice, createAsyncThunk } from '@reduxjs/toolkit';
+
+
+export const getCategories = createAsyncThunk(
+  'categories/getCategories',
+  async () => {
+    const response = await fetch('https://api-js401.herokuapp.com/api/v1/categories');
+    const data = await response.json();
+    return data.results;
+  }
+);
+
 const initialState = {
   categories: [],
   selectedCategory: '',
 };
 
-const categoryReducer = (state = initialState, action) => {
+const categorySlice = createSlice({
+  name: 'categories',
+  initialState,
+  reducers: {
+    changeCategory: (state, action) => {
+      state.selectedCategory = action.payload;
+    },
+    setCategories: (state, action) => {
+      state.categories = action.payload;
+    },
+    clear: (state) => {
+      state.categories = [];
+      state.selectedCategory = '';
+    },
+  },
+});
 
-  switch(action.type){
-    case 'change-category':
-      return {
-        ...state,
-        selectedCategory: action.payload,
-      }
-    case 'get-categories':
-      return {
-        ...state,
-        categories: action.payload
-      }
-    case 'clear':
-      return initialState;
-    default:
-      return state
-  }
-};
-
-export default categoryReducer;
+export const { changeCategory, setCategories, clear } = categorySlice.actions;
+export default categorySlice.reducer;

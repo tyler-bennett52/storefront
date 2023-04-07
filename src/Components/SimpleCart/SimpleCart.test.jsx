@@ -27,8 +27,8 @@ describe('SimpleCart component', () => {
       </Provider>
     );
 
-    expect(screen.getByText('TV')).toBeInTheDocument();
-    expect(screen.getByText('Shirt')).toBeInTheDocument();
+    expect(screen.getByText('TV - $100')).toBeInTheDocument();
+    expect(screen.getByText('Shirt - $9')).toBeInTheDocument();
   });
 
   it('renders an empty cart when there are no items', () => {

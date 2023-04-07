@@ -1,6 +1,12 @@
 import { useDispatch, useSelector } from 'react-redux';
 import { Card, CardActionArea, CardMedia, Typography } from '@mui/material';
-import { addItem, decrementProduct, getProducts } from '../../store/actions';
+import { Link } from 'react-router-dom';
+// import { addItem, decrementProduct, getProducts } from '../../store/actions';
+import { addToCart as addItem } from '../../store/cart';
+import { getProducts } from '../../store/actions';
+import { decrementStock as decrementProduct } from '../../store/products';
+
+
 import { useEffect } from 'react';
 
 const Products = () => {
@@ -29,7 +35,7 @@ const Products = () => {
                 <Typography variant='h5' >{product.name} {product.inStock ? (`(${product.inStock})`) : null}</Typography>
                 <CardMedia sx={{ height: 300, width: 300 }} image='https://placehold.co/300x300' />
                 <CardActionArea onClick={() => addToCart(product)}><Typography variant='h6' color='text.secondary'>Add to cart</Typography></CardActionArea>
-                <CardActionArea ><Typography variant='h6' color='text.secondary'>Show Details</Typography></CardActionArea>
+                <CardActionArea ><Typography variant='h6' color='text.secondary'><Link to={`/products/${product._id}`}>Show Details </Link></Typography></CardActionArea>
               </Card>
             )
             } else {
@@ -38,6 +44,8 @@ const Products = () => {
                 <Typography variant='h5' >{product.name} {product.inStock ? (`(0)`) : null}</Typography>
                 <CardMedia sx={{ height: 300, width: 300 }} image='https://placehold.co/300x300' />
                 <CardActionArea ><Typography variant='h6' color='text.secondary'>Out of Stock</Typography></CardActionArea>
+                <CardActionArea ><Typography variant='h6' color='text.secondary'><Link to={`/products/${product._id}`}>Show Details </Link></Typography></CardActionArea>
+
               </Card>
               )
             }

@@ -1,5 +1,6 @@
 import { useDispatch, useSelector } from 'react-redux';
-import { changeCategory, getCategories } from '../../store/actions';
+import { getCategories } from '../../store/actions';
+import { changeCategory } from '../../store/categories';
 import { ButtonGroup, Button } from '@mui/material';
 import { useEffect } from 'react';
 
@@ -22,6 +23,5 @@ const Categories = (props) => {
     </>
   )
 };
-
 
 export default Categories;

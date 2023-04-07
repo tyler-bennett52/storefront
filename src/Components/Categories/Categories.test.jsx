@@ -42,6 +42,6 @@ describe('Categories component', () => {
     fireEvent.click(screen.getByText('electronics'));
 
     const dispatchedActions = store.getActions();
-    expect(dispatchedActions[0]).toEqual({ type: 'change-category', payload: 'electronics' });
+    expect(dispatchedActions[0]).toEqual({ type: 'categories/changeCategory', payload: 'electronics' });
   });
 });

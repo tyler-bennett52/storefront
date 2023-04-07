@@ -1,65 +1,63 @@
+import React from 'react';
 import { render, screen, fireEvent } from '@testing-library/react';
-import '@testing-library/jest-dom';
-import { Provider } from 'react-redux';
-import configureStore from 'redux-mock-store';
-import thunk from 'redux-thunk';
+import '@testing-library/jest-dom/extend-expect';
+import { useSelector, useDispatch } from 'react-redux';
+import { BrowserRouter as Router } from 'react-router-dom';
 import Products from './';
 
-const mockStore = configureStore([thunk]);
+jest.mock('react-redux', () => ({
+  useSelector: jest.fn(),
+  useDispatch: jest.fn(),
+}));
 
-const mockState = {
-  categories: {
-    selectedCategory: 'electronics',
-  },
-  products: {
-    products: [
-      { name: 'TV', category: 'electronics', price: 699.00, inStock: 5 },
-      { name: 'Radio', category: 'electronics', price: 99.00, inStock: 15 },
-      { name: 'Shirt', category: 'clothing', price: 9.00, inStock: 25 },
-    ],
-  },
-};
+const mockDispatch = jest.fn();
+const mockSelectedCategory = 'Electronics';
+const mockProducts = [
+  { _id: '1', name: 'Laptop', category: 'Electronics', inStock: 5 },
+  { _id: '2', name: 'Headphones', category: 'Electronics', inStock: 0 },
+  { _id: '3', name: 'Shirt', category: 'Clothing', inStock: 10 },
+];
 
-describe('Products component', () => {
-  let store;
-
+describe('Products', () => {
   beforeEach(() => {
-    store = mockStore(mockState);
+    useSelector.mockImplementation((selector) => selector({
+      categories: { selectedCategory: mockSelectedCategory },
+      products: { products: mockProducts },
+    }));
+    useDispatch.mockReturnValue(mockDispatch);
   });
 
-  it('renders without crashing', () => {
+  afterEach(() => {
+    useSelector.mockClear();
+    useDispatch.mockClear();
+  });
+
+  test('renders products for the selected category', () => {
     render(
-      <Provider store={store}>
+      <Router>
         <Products />
-      </Provider>
+      </Router>
     );
+
+    expect(mockDispatch).toHaveBeenCalledTimes(1);
+    expect(screen.getByTestId('selected-category')).toHaveTextContent(mockSelectedCategory);
+    expect(screen.getByText('Laptop (5)')).toBeInTheDocument();
+    expect(screen.getByText('Add to cart')).toBeInTheDocument();
+    expect(screen.getByText('Headphones')).toBeInTheDocument();
+    expect(screen.getByText('Out of Stock')).toBeInTheDocument();
+    expect(screen.queryByText('Shirt (10)')).not.toBeInTheDocument();
   });
 
-  it('displays products based on the selected category', () => {
+  test('adds product to cart when "Add to cart" is clicked', () => {
     render(
-      <Provider store={store}>
+      <Router>
         <Products />
-      </Provider>
+      </Router>
     );
 
-    expect(screen.getByText('TV (5)')).toBeInTheDocument();
-    expect(screen.getByText('Radio (15)')).toBeInTheDocument();
-    expect(screen.queryByText('Shirt (25)')).not.toBeInTheDocument();
-  });
+    fireEvent.click(screen.getByText('Add to cart'));
 
-  it('updates in-stock count when the "Add to cart" button is clicked', () => {
-    render(
-      <Provider store={store}>
-        <Products />
-      </Provider>
-    );
-  
-    const addToCartButtons = screen.getAllByText('Add to cart');
-    fireEvent.click(addToCartButtons[0]);
-  
-    const dispatchedActions = store.getActions();
-    expect(dispatchedActions[0]).toEqual({ type: 'add-to-cart', payload: { name: 'TV', category: 'electronics', price: 699.00, inStock: 5 } });
-    // expect(dispatchedActions[1]).toEqual({ type: 'remove-from-cart', payload: { name: 'TV', category: 'electronics', price: 699.00, inStock: 5 } });
+    expect(mockDispatch).toHaveBeenNthCalledWith(2, { type: 'cart/addToCart', payload: mockProducts[0] });
+    expect(mockDispatch).toHaveBeenNthCalledWith(3, { type: 'products/decrementStock', payload: mockProducts[0] });
   });
-  
 });
